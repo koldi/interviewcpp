@@ -2,3 +2,5 @@ language: cpp
 dist: osx
 os: osx
 compiler: clang++
+script:
+  - make
