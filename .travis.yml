@@ -1,0 +1,4 @@
+language: cpp
+dist: osx
+os: osx
+compiler: clang++
