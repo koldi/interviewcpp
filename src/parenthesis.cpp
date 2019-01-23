@@ -7,6 +7,7 @@ Open brackets must be closed by the same type of brackets.
 Open brackets must be closed in the correct order.
 Note that an empty string is also considered valid.
 */
+#include "catch2.hpp"
 #include <string>
 #include <vector>
 #include <set>
@@ -41,24 +42,21 @@ bool validParenthesis(const std::string& text)
     return stack.empty();
 }
 
-int main()
-{
-    bool ret = true;
-    ret &= validParenthesis("{[()]}");
-    ret &= validParenthesis("{[(a)]}");
-    ret &= validParenthesis("");
-    ret &= validParenthesis("()");
-    ret &= validParenthesis("({})");
-    ret &= !validParenthesis("{[(]))");
-    ret &= !validParenthesis("{{{{{{{");
-    ret &= !validParenthesis("[[[[[[[[");
-    ret &= !validParenthesis("(((((((");
-    ret &= !validParenthesis("))))))))");
-    ret &= !validParenthesis("]]]]]]]]");
-    ret &= !validParenthesis(")))))))");
-    ret &= validParenthesis("aaaa");
+TEST_CASE( "Parenthesis should be valid", "[parenthesis]" ) {
+    REQUIRE(validParenthesis("{[()]}") == true);
+    REQUIRE(validParenthesis("{[(a)]}") == true);
+    REQUIRE(validParenthesis("") == true);
+    REQUIRE(validParenthesis("()") == true);
+    REQUIRE(validParenthesis("({})") == true);
+    REQUIRE(validParenthesis("aaaa") == true);
+}
 
-    std::cout << (ret ? "Cool" : "Fuck") << std::endl;    
-
-    return 0;
+TEST_CASE( "Parenthesis should be invalid", "[parenthesis]" ) {
+    REQUIRE(validParenthesis("{[(]))") == false);
+    REQUIRE(validParenthesis("{{{{{{{") == false);
+    REQUIRE(validParenthesis("[[[[[[[[") == false);
+    REQUIRE(validParenthesis("(((((((") == false);
+    REQUIRE(validParenthesis("))))))))") == false);
+    REQUIRE(validParenthesis("]]]]]]]]") == false);
+    REQUIRE(validParenthesis(")))))))") == false);
 }

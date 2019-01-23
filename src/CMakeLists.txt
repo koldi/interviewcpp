@@ -4,6 +4,15 @@ project(interview)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++1z -Wall -Wextra -Werror")
 
-add_executable(parenthesis 
+enable_testing()
+
+add_executable(interviewtest
+  test_main.cpp
   parenthesis.cpp
+  wordbackward.cpp
+)
+
+add_test(
+  NAME    interviewtest
+  COMMAND interviewtest
 )
