@@ -6,7 +6,6 @@ output: tahw eht kcah sti gniod
 */
 #include "catch2.hpp"
 #include <string>
-#include <iostream>
 
 void turnPhaseBackward(char phase[], size_t length)
 {
@@ -32,8 +31,18 @@ void turnPhaseBackward(char phase[], size_t length)
 }
 
 TEST_CASE( "Mirror every word in a phase", "[phasebackward]" ) {
-    char example[] = "What the hack";
-    char expectedExample[] = "tahW eht kcah";
-    turnPhaseBackward(example, sizeof(example));
-    REQUIRE(std::string(example) == std::string(expectedExample));
+    char example1[] = "What the hack";
+    char expectedExample1[] = "tahW eht kcah";
+    turnPhaseBackward(example1, sizeof(example1));
+    REQUIRE(std::string(example1) == std::string(expectedExample1));
+
+    char example2[] = "";
+    char expectedExample2[] = "";
+    turnPhaseBackward(example2, sizeof(example2));
+    REQUIRE(std::string(example2) == std::string(expectedExample2));
+
+    char example3[] = "aaaaaaaaaaaaaaaaaaaaaa";
+    char expectedExample3[] = "aaaaaaaaaaaaaaaaaaaaaa";
+    turnPhaseBackward(example3, sizeof(example3));
+    REQUIRE(std::string(example3) == std::string(expectedExample3));
 }
